@@ -1,0 +1,26 @@
+# /etc/conf.d/nibexd: config file for /etc/init.d/nibexd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/nibex/nibex.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/nibexd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/nibexd.pid"
+
+# Where to write nibexd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/nibexd"
+
+# User and group to own nibexd process
+#BITCOIND_USER="nibex"
+#BITCOIND_GROUP="nibex"
+
+# Path to nibexd executable
+#BITCOIND_BIN="/usr/bin/nibexd"
+
+# Nice value to run nibexd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

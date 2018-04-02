@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Nibex
+Comment=Nibex P2P Cryptocurrency
+Comment[fr]=Nibex, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Nibex, eşten eşe kriptografik sanal para birimi
+Exec=nibex-qt %u
+Terminal=false
+Type=Application
+Icon=nibex128
+MimeType=x-scheme-handler/nibex;
+Categories=Office;Finance;
