@@ -136,7 +136,7 @@ public:
         // vSeeds.push_back(CDNSSeedData("seeddns.zixcash.cash", "seeddns.zixcash.cash"));
         // vSeeds.push_back(CDNSSeedData("seeddns2.zixcash.cash", "seeddns2.zixcash.cash"));
 
-        vSeeds.push_back(CDNSSeedData("Seednode1", "45.77.29.109"));
+        vSeeds.push_back(CDNSSeedData("Seednode1", "144.202.107.106"));
         vSeeds.push_back(CDNSSeedData("Seednode2", "45.77.194.172"));
         vSeeds.push_back(CDNSSeedData("Seednode3", "45.32.100.134"));
 
