@@ -1,1 +1,1 @@
-#### Nibex Core Wallet
+#### ZixCash Core Wallet

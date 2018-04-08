@@ -1,12 +1,12 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Nibex developers
+// Copyright (c) 2017 The ZixCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/nibex-config.h"
+#include "config/zixcash-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -62,7 +62,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::Nibex);
+        settings.setValue("nDisplayUnit", BitcoinUnits::ZixCash);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -76,11 +76,11 @@ void OptionsModel::Init()
     if (!settings.contains("nObfuscationRounds"))
         settings.setValue("nObfuscationRounds", 2);
 
-    if (!settings.contains("nAnonymizeNibexAmount"))
-        settings.setValue("nAnonymizeNibexAmount", 1000);
+    if (!settings.contains("nAnonymizeZixCashAmount"))
+        settings.setValue("nAnonymizeZixCashAmount", 1000);
 
     nObfuscationRounds = settings.value("nObfuscationRounds").toLongLong();
-    nAnonymizeNibexAmount = settings.value("nAnonymizeNibexAmount").toLongLong();
+    nAnonymizeZixCashAmount = settings.value("nAnonymizeZixCashAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -147,8 +147,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nObfuscationRounds"))
         SoftSetArg("-obfuscationrounds", settings.value("nObfuscationRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeNibexAmount"))
-        SoftSetArg("-anonymizenibexamount", settings.value("nAnonymizeNibexAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeZixCashAmount"))
+        SoftSetArg("-anonymizezixcashamount", settings.value("nAnonymizeZixCashAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -159,7 +159,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in nibex.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in zixcash.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -228,8 +228,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nThreadsScriptVerif");
         case ObfuscationRounds:
             return QVariant(nObfuscationRounds);
-        case AnonymizeNibexAmount:
-            return QVariant(nAnonymizeNibexAmount);
+        case AnonymizeZixCashAmount:
+            return QVariant(nAnonymizeZixCashAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -338,10 +338,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             settings.setValue("nObfuscationRounds", nObfuscationRounds);
             emit obfuscationRoundsChanged(nObfuscationRounds);
             break;
-        case AnonymizeNibexAmount:
-            nAnonymizeNibexAmount = value.toInt();
-            settings.setValue("nAnonymizeNibexAmount", nAnonymizeNibexAmount);
-            emit anonymizeNibexAmountChanged(nAnonymizeNibexAmount);
+        case AnonymizeZixCashAmount:
+            nAnonymizeZixCashAmount = value.toInt();
+            settings.setValue("nAnonymizeZixCashAmount", nAnonymizeZixCashAmount);
+            emit anonymizeZixCashAmountChanged(nAnonymizeZixCashAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

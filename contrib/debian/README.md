@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package nibexd/nibex-qt
-for Debian-based Linux systems. If you compile nibexd/nibex-qt yourself, there are some useful files here.
+This directory contains files used to package zixcashd/zixcash-qt
+for Debian-based Linux systems. If you compile zixcashd/zixcash-qt yourself, there are some useful files here.
 
-## nibex: URI support ##
+## zixcash: URI support ##
 
 
-nibex-qt.desktop  (Gnome / Open Desktop)
+zixcash-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install nibex-qt.desktop
+	sudo desktop-file-install zixcash-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your nibexqt binary to `/usr/bin`
-and the `../../share/pixmaps/nibex128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your zixcashqt binary to `/usr/bin`
+and the `../../share/pixmaps/zixcash128.png` to `/usr/share/pixmaps`
 
-nibex-qt.protocol (KDE)
+zixcash-qt.protocol (KDE)
 

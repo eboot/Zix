@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ZixCash
+Comment=ZixCash P2P Cryptocurrency
+Comment[fr]=ZixCash, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=ZixCash, eşten eşe kriptografik sanal para birimi
+Exec=zixcash-qt %u
+Terminal=false
+Type=Application
+Icon=zixcash128
+MimeType=x-scheme-handler/zixcash;
+Categories=Office;Finance;

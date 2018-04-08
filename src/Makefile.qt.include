@@ -1,32 +1,32 @@
-bin_PROGRAMS += qt/nibex-qt
+bin_PROGRAMS += qt/zixcash-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# nibex qt core #
+# zixcash qt core #
 QT_TS = \
-  qt/locale/nibex_bg.ts \
-  qt/locale/nibex_ca.ts \
-  qt/locale/nibex_cs.ts \
-  qt/locale/nibex_da.ts \
-  qt/locale/nibex_de.ts \
-  qt/locale/nibex_en.ts \
-  qt/locale/nibex_en_US.ts \
-  qt/locale/nibex_es.ts \
-  qt/locale/nibex_fi.ts \
-  qt/locale/nibex_fr_FR.ts \
-  qt/locale/nibex_it.ts \
-  qt/locale/nibex_ja.ts \
-  qt/locale/nibex_ko_KR.ts \
-  qt/locale/nibex_nl.ts \
-  qt/locale/nibex_pl.ts \
-  qt/locale/nibex_pt.ts \
-  qt/locale/nibex_pt_BR.ts \
-  qt/locale/nibex_ro_RO.ts \
-  qt/locale/nibex_ru.ts \
-  qt/locale/nibex_sk.ts \
-  qt/locale/nibex_sv.ts \
-  qt/locale/nibex_uk.ts \
-  qt/locale/nibex_zh_CN.ts \
-  qt/locale/nibex_zh_TW.ts
+  qt/locale/zixcash_bg.ts \
+  qt/locale/zixcash_ca.ts \
+  qt/locale/zixcash_cs.ts \
+  qt/locale/zixcash_da.ts \
+  qt/locale/zixcash_de.ts \
+  qt/locale/zixcash_en.ts \
+  qt/locale/zixcash_en_US.ts \
+  qt/locale/zixcash_es.ts \
+  qt/locale/zixcash_fi.ts \
+  qt/locale/zixcash_fr_FR.ts \
+  qt/locale/zixcash_it.ts \
+  qt/locale/zixcash_ja.ts \
+  qt/locale/zixcash_ko_KR.ts \
+  qt/locale/zixcash_nl.ts \
+  qt/locale/zixcash_pl.ts \
+  qt/locale/zixcash_pt.ts \
+  qt/locale/zixcash_pt_BR.ts \
+  qt/locale/zixcash_ro_RO.ts \
+  qt/locale/zixcash_ru.ts \
+  qt/locale/zixcash_sk.ts \
+  qt/locale/zixcash_sv.ts \
+  qt/locale/zixcash_uk.ts \
+  qt/locale/zixcash_zh_CN.ts \
+  qt/locale/zixcash_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -104,16 +104,16 @@ BITCOIN_MM = \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/nibex.moc \
+  qt/zixcash.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_nibex.cpp
-QT_QRC = qt/nibex.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_nibex_locale.cpp
-QT_QRC_LOCALE = qt/nibex_locale.qrc
+QT_QRC_CPP = qt/qrc_zixcash.cpp
+QT_QRC = qt/zixcash.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_zixcash_locale.cpp
+QT_QRC_LOCALE = qt/zixcash_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -292,7 +292,7 @@ RES_IMAGES = \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
   qt/res/images/upArrow_small.png \
-  qt/res/images/nibex_logo_horizontal.png \
+  qt/res/images/zixcash_logo_horizontal.png \
   qt/res/images/leftArrow_small.png \
   qt/res/images/rightArrow_small.png \
   qt/res/images/qtreeview_selected.png \
@@ -305,7 +305,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/nibex-qt-res.rc
+BITCOIN_RC = qt/res/zixcash-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -325,68 +325,68 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_nibex_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_zixcash_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# nibex-qt binary #
-qt_nibex_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# zixcash-qt binary #
+qt_zixcash_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_nibex_qt_SOURCES = qt/nibex.cpp
+qt_zixcash_qt_SOURCES = qt/zixcash.cpp
 if TARGET_DARWIN
-  qt_nibex_qt_SOURCES += $(BITCOIN_MM)
+  qt_zixcash_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_nibex_qt_SOURCES += $(BITCOIN_RC)
+  qt_zixcash_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_nibex_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_zixcash_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_nibex_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_zixcash_qt_LDADD += $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_nibex_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_zixcash_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_nibex_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_zixcash_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1)
-qt_nibex_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_nibex_qt_LIBTOOLFLAGS = --tag CXX
+qt_zixcash_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_zixcash_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 .SECONDARY: $(QT_QM)
 
-qt/nibexstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
+qt/zixcashstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/nibexstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: qt/zixcashstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/nibex_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/zixcash_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name nibex_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name zixcash_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name nibex $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name zixcash $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-nibex_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_nibex_qt_OBJECTS) qt/nibex-qt$(EXEEXT) $(LIBBITCOINQT)
+zixcash_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_zixcash_qt_OBJECTS) qt/zixcash-qt$(EXEEXT) $(LIBBITCOINQT)
 
-nibex_qt : qt/nibex-qt$(EXEEXT)
+zixcash_qt : qt/zixcash-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

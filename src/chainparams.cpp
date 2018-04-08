@@ -111,7 +111,7 @@ public:
         nMasternodeCountDrift = 20;
 	nMasternodeColleteralLimxDev = 5000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 510;
-        nMaxMoneyOut = 90000000 * COIN;
+        nMaxMoneyOut = 25000000 * COIN;
 
         const char* pszTimestamp = "You may want to get a job in a bank";
         CMutableTransaction txNew;
@@ -133,10 +133,15 @@ public:
         assert(hashGenesisBlock == uint256("0x000000abe469592d7fce3219497661f3d18deff0cf7b1fc9846f199a25e2135c"));
         assert(genesis.hashMerkleRoot == uint256("0x30e73eb7875328cecc42b07eeb3e86a2d4644e0a65ed3db2b3f87b3368767358"));
 
-        vSeeds.push_back(CDNSSeedData("seeddns.nibex.cash", "seeddns.nibex.cash"));
-        vSeeds.push_back(CDNSSeedData("seeddns2.nibex.cash", "seeddns2.nibex.cash"));
+        // vSeeds.push_back(CDNSSeedData("seeddns.zixcash.cash", "seeddns.zixcash.cash"));
+        // vSeeds.push_back(CDNSSeedData("seeddns2.zixcash.cash", "seeddns2.zixcash.cash"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
+        vSeeds.push_back(CDNSSeedData("Seednode1", "45.77.29.109"));
+        vSeeds.push_back(CDNSSeedData("Seednode2", "45.77.194.172"));
+        vSeeds.push_back(CDNSSeedData("Seednode3", "45.32.100.134"));
+
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 80);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 91);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 173);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x24)(0x33)(0x24).convert_to_container<std::vector<unsigned char> >();
@@ -206,14 +211,14 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet nibex addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet nibex script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet zixcash addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet zixcash script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet nibex BIP32 pubkeys start with 'DRKV'
+        // Testnet zixcash BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet nibex BIP32 prvkeys start with 'DRKP'
+        // Testnet zixcash BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet nibex BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet zixcash BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
 
@@ -257,8 +262,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // Nibex: 1 day
-        nTargetSpacing = 1 * 60;        // Nibex: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // ZixCash: 1 day
+        nTargetSpacing = 1 * 60;        // ZixCash: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1522675263;
         genesis.nBits = 0x207fffff;

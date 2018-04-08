@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Nibex developers
+// Copyright (c) 2017 The ZixCash developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,7 +42,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "NIBEX cannot be compiled without assertions."
+#error "ZIX cannot be compiled without assertions."
 #endif
 
 /**
@@ -1596,20 +1596,43 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 int64_t GetBlockValue(int nHeight)
 {
-    int64_t nSubsidy = 200 * COIN;
+    int64_t nSubsidy = 0 * COIN;
 
-    if (nHeight < 2 && nHeight > 0) {
-      nSubsidy = 500000 * COIN;
-    } else if (nHeight >= 2 && nHeight < 501) {
-      nSubsidy = 1 * COIN;
-    } else if (nHeight >= 501 && nHeight < 751) {
-      nSubsidy = 20 * COIN;
-    } else if (nHeight >= 751 && nHeight < 1001) {
-      nSubsidy = 50 * COIN;
-    } else if (nHeight >= 1001) {
-      nSubsidy = 200 * COIN;
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200 && nHeight > 0)
+            return 250000 * COIN;
     }
-
+    if (nHeight == 0)
+  		return 1 * COIN;
+if(nHeight == 1){
+    nSubsidy = 1100000 * COIN;
+}
+else if(nHeight <=1000 && nHeight < 1001){
+      nSubsidy = 1 * COIN;
+}
+//POW stops ,POS and masternode rewards start
+else if(nHeight >=1001 && nHeight <= 14400){
+    nSubsidy = 10 * COIN;
+}
+else if(nHeight >=14401 && nHeight <= 20000){
+    nSubsidy = 100* COIN;
+}
+else if(nHeight >=20001 && nHeight <= 48800){
+    nSubsidy = 10 * COIN;
+}
+else if(nHeight >=48800 && nHeight <= 60000){
+    nSubsidy = 100 * COIN;
+}
+else if(nHeight >=60001 && nHeight <= 103200){
+  nSubsidy = 10 * COIN;
+}
+else if(nHeight >=103201 && nHeight <= 120000){
+    nSubsidy = 100 * COIN;
+}
+//Until infinity block height
+else if(nHeight >=120000 && nHeight <= 999999999999999){
+  nSubsidy = 5 * COIN;
+}
     return nSubsidy;
 }
 
@@ -1617,8 +1640,40 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
 
-    ret = blockValue * 0.8;
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200)
+            return 0;
+    }
 
+	if (nHeight == 0)
+		return 0;
+//No rewards for mn's until block 1000
+    if (nHeight < 1000) {
+        ret = 0;
+    }
+    //block rewards for mn's start
+    else if(nHeight >=1001 && nHeight <= 14400){
+      ret = blockValue * 0.75;
+    }
+    else if(nHeight >=14401 && nHeight <= 20000){
+        ret = blockValue * 0.50;
+    }
+    else if(nHeight >=20001 && nHeight <= 48800){
+        ret = blockValue * 0.75;
+    }
+    else if(nHeight >=48800 && nHeight <= 60000){
+        ret = blockValue * 0.50;
+    }
+    else if(nHeight >=60001 && nHeight <= 103200){
+    ret = blockValue * 0.75;
+    }
+    else if(nHeight >=103201 && nHeight <= 120000){
+      ret = blockValue * 0.50;
+    }
+    //Until infinity block height
+    else if(nHeight >=120000 && nHeight <= 999999999999999){
+    ret = blockValue * 0.50;
+    }
     return ret;
 }
 
@@ -2007,7 +2062,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("nibex-scriptch");
+    RenameThread("zixcash-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3102,7 +3157,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // NIBEX
+        // ZIX
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -5308,7 +5363,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 }
 
 // Note: whenever a protocol update is needed toggle between both implementations (comment out the formerly active one)
-//       so we can leave the existing clients untouched (old SPORK will stay on so they don't see even older clients). 
+//       so we can leave the existing clients untouched (old SPORK will stay on so they don't see even older clients).
 //       Those old clients won't react to the changes of the other (new) SPORK because at the time of their implementation
 //       it was the one which was commented out
 int ActiveProtocol()
@@ -5326,9 +5381,9 @@ int ActiveProtocol()
 */
 
 
-    // SPORK_15 is used for 70910. Nodes < 70910 don't see it and still get their protocol version via SPORK_14 and their 
+    // SPORK_15 is used for 70910. Nodes < 70910 don't see it and still get their protocol version via SPORK_14 and their
     // own ModifierUpgradeBlock()
- 
+
     if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 

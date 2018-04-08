@@ -8,7 +8,7 @@
 #include "spork.h"
 
 //
-// Bootup the Masternode, look for a 5000 NIBEX input and register on the network
+// Bootup the Masternode, look for a 5000 ZIX input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {

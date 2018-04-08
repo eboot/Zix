@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: nibexd.service
-Upstart: nibexd.conf
-OpenRC:  nibexd.openrc
-         nibexd.openrcconf
-CentOS:  nibexd.init
+SystemD: zixcashd.service
+Upstart: zixcashd.conf
+OpenRC:  zixcashd.openrc
+         zixcashd.openrcconf
+CentOS:  zixcashd.init
 
 have been made available to assist packagers in creating node packages here.
 

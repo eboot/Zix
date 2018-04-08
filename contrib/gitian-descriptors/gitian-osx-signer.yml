@@ -1,5 +1,5 @@
 ---
-name: "nibex-dmg-signer"
+name: "zixcash-dmg-signer"
 suites:
 - "trusty"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/nibex-project/nibex-detached-sigs.git"
+- "url": "https://github.com/zixcash-project/zixcash-detached-sigs.git"
   "dir": "signature"
 files:
-- "nibex-osx-unsigned.tar.gz"
+- "zixcash-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,11 +27,11 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=nibex-osx-unsigned.tar.gz
-  SIGNED=nibex-osx-signed.dmg
+  UNSIGNED=zixcash-osx-unsigned.tar.gz
+  SIGNED=zixcash-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"
   ./detached-sig-apply.sh ${UNSIGNED} signature/osx
-  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Nibex-Qt" -no-pad -r -dir-mode 0755 -apple -o uncompressed.dmg signed-app
+  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "ZixCash-Qt" -no-pad -r -dir-mode 0755 -apple -o uncompressed.dmg signed-app
   ${WRAP_DIR}/dmg dmg uncompressed.dmg ${OUTDIR}/${SIGNED}

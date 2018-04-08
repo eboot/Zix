@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/nibex-project/nibex
+url=https://github.com/zixcash-project/zixcash
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the nibex, gitian-builder, gitian.sigs, and nibex-detached-sigs.
+Run this script from the directory containing the zixcash, gitian-builder, gitian.sigs, and zixcash-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/nibex-project/nibex
+-u|--url	Specify the URL of the repository. Default is https://github.com/zixcash-project/zixcash
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/nibex-project/gitian.sigs.git
-    git clone https://github.com/nibex-project/nibex-detached-sigs.git
+    git clone https://github.com/zixcash-project/gitian.sigs.git
+    git clone https://github.com/zixcash-project/zixcash-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -247,7 +247,7 @@ then
 fi
 
 # Set up build
-pushd ./nibex
+pushd ./zixcash
 git fetch
 git checkout ${COMMIT}
 popd
@@ -256,7 +256,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./nibex-binaries/${VERSION}
+	mkdir -p ./zixcash-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -266,7 +266,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../nibex/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../zixcash/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit nibex=${COMMIT} --url nibex=${url} ../nibex/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../nibex/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/nibex-*.tar.gz build/out/src/nibex-*.tar.gz ../nibex-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit zixcash=${COMMIT} --url zixcash=${url} ../zixcash/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../zixcash/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/zixcash-*.tar.gz build/out/src/zixcash-*.tar.gz ../zixcash-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit nibex=${COMMIT} --url nibex=${url} ../nibex/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../nibex/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/nibex-*-win-unsigned.tar.gz inputs/nibex-win-unsigned.tar.gz
-	    mv build/out/nibex-*.zip build/out/nibex-*.exe ../nibex-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit zixcash=${COMMIT} --url zixcash=${url} ../zixcash/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../zixcash/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/zixcash-*-win-unsigned.tar.gz inputs/zixcash-win-unsigned.tar.gz
+	    mv build/out/zixcash-*.zip build/out/zixcash-*.exe ../zixcash-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -295,10 +295,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit nibex=${COMMIT} --url nibex=${url} ../nibex/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../nibex/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/nibex-*-osx-unsigned.tar.gz inputs/nibex-osx-unsigned.tar.gz
-	    mv build/out/nibex-*.tar.gz build/out/nibex-*.dmg ../nibex-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit zixcash=${COMMIT} --url zixcash=${url} ../zixcash/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../zixcash/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/zixcash-*-osx-unsigned.tar.gz inputs/zixcash-osx-unsigned.tar.gz
+	    mv build/out/zixcash-*.tar.gz build/out/zixcash-*.dmg ../zixcash-binaries/${VERSION}
 	fi
 	popd
 
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../nibex/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../zixcash/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../nibex/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../zixcash/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../nibex/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../zixcash/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../nibex/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../zixcash/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../nibex/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../zixcash/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,10 +360,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../nibex/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../nibex/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/nibex-*win64-setup.exe ../nibex-binaries/${VERSION}
-	    mv build/out/nibex-*win32-setup.exe ../nibex-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../zixcash/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../zixcash/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/zixcash-*win64-setup.exe ../zixcash-binaries/${VERSION}
+	    mv build/out/zixcash-*win32-setup.exe ../zixcash-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -371,9 +371,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../nibex/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../nibex/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/nibex-osx-signed.dmg ../nibex-binaries/${VERSION}/nibex-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../zixcash/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../zixcash/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/zixcash-osx-signed.dmg ../zixcash-binaries/${VERSION}/zixcash-${VERSION}-osx.dmg
 	fi
 	popd
 

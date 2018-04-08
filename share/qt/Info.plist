@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>1.0.0, Copyright © 2009-2018 The Bitcoin Core developers, 2014-2018 The Dash Core developers, 2015-2018 The Nibex developers</string>
+  <string>1.0.0, Copyright © 2009-2018 The Bitcoin Core developers, 2014-2018 The Dash Core developers, 2015-2018 The ZixCash developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>1.0.0</string>
@@ -29,10 +29,10 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Nibex-Qt</string>
+  <string>ZixCash-Qt</string>
 
   <key>CFBundleIdentifier</key>
-  <string>io.nibex.Nibex-Qt</string>
+  <string>io.zixcash.ZixCash-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -40,10 +40,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.nibex.NibexPayment</string>
+      <string>io.zixcash.ZixCashPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>nibex</string>
+        <string>zixcash</string>
       </array>
     </dict>
   </array>
@@ -52,9 +52,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>io.nibex.paymentrequest</string>
+      <string>io.zixcash.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Nibex payment request</string>
+      <string>ZixCash payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -62,10 +62,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-nibex-payment-request</string>
+        <string>application/x-zixcash-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>nibexpaymentrequest</string>
+          <string>zixcashpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -78,7 +78,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>io.nibex.paymentrequest</string>
+        <string>io.zixcash.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

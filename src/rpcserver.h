@@ -95,7 +95,7 @@ public:
 };
 
 /**
- * NIBEX RPC command dispatcher.
+ * ZIX RPC command dispatcher.
  */
 class CRPCTable
 {

@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between nibex-cli and nibexd)
- * of a given instance of the Nibex system.
+ * CBaseChainParams defines the base parameters (shared between zixcash-cli and zixcashd)
+ * of a given instance of the ZixCash system.
  */
 class CBaseChainParams
 {

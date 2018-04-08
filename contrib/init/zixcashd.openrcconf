@@ -1,0 +1,26 @@
+# /etc/conf.d/zixcashd: config file for /etc/init.d/zixcashd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/zixcash/zixcash.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/zixcashd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/zixcashd.pid"
+
+# Where to write zixcashd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/zixcashd"
+
+# User and group to own zixcashd process
+#BITCOIND_USER="zixcash"
+#BITCOIND_GROUP="zixcash"
+
+# Path to zixcashd executable
+#BITCOIND_BIN="/usr/bin/zixcashd"
+
+# Nice value to run zixcashd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

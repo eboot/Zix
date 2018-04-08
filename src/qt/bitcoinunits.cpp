@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Nibex developers
+// Copyright (c) 2017 The ZixCash developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,18 +20,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(Nibex);
-    unitlist.append(mNibex);
-    unitlist.append(uNibex);
+    unitlist.append(ZixCash);
+    unitlist.append(mZixCash);
+    unitlist.append(uZixCash);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case Nibex:
-    case mNibex:
-    case uNibex:
+    case ZixCash:
+    case mZixCash:
+    case uZixCash:
         return true;
     default:
         return false;
@@ -41,12 +41,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case Nibex:
-        return QString("nibex");
-    case mNibex:
-        return QString("mnibex");
-    case uNibex:
-        return QString::fromUtf8("unibex");
+    case ZixCash:
+        return QString("zixcash");
+    case mZixCash:
+        return QString("mzixcash");
+    case uZixCash:
+        return QString::fromUtf8("uzixcash");
     default:
         return QString("???");
     }
@@ -56,23 +56,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case Nibex:
-            return QString("Nibex");
-        case mNibex:
-            return QString("mNibex");
-        case uNibex:
-            return QString::fromUtf8("μNibex");
+        case ZixCash:
+            return QString("ZixCash");
+        case mZixCash:
+            return QString("mZixCash");
+        case uZixCash:
+            return QString::fromUtf8("μZixCash");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case Nibex:
-            return QString("tNibex");
-        case mNibex:
-            return QString("mtNibex");
-        case uNibex:
-            return QString::fromUtf8("μtNibex");
+        case ZixCash:
+            return QString("tZixCash");
+        case mZixCash:
+            return QString("mtZixCash");
+        case uZixCash:
+            return QString::fromUtf8("μtZixCash");
         default:
             return QString("???");
         }
@@ -83,23 +83,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case Nibex:
-            return QString("Nibex");
-        case mNibex:
-            return QString("Milli-Nibex (1 / 1" THIN_SP_UTF8 "000)");
-        case uNibex:
-            return QString("Micro-Nibex (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case ZixCash:
+            return QString("ZixCash");
+        case mZixCash:
+            return QString("Milli-ZixCash (1 / 1" THIN_SP_UTF8 "000)");
+        case uZixCash:
+            return QString("Micro-ZixCash (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case Nibex:
-            return QString("TestNibexs");
-        case mNibex:
-            return QString("Milli-TestNibex (1 / 1" THIN_SP_UTF8 "000)");
-        case uNibex:
-            return QString("Micro-TestNibex (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case ZixCash:
+            return QString("TestZixCashs");
+        case mZixCash:
+            return QString("Milli-TestZixCash (1 / 1" THIN_SP_UTF8 "000)");
+        case uZixCash:
+            return QString("Micro-TestZixCash (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -109,11 +109,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case Nibex:
+    case ZixCash:
         return 100000000;
-    case mNibex:
+    case mZixCash:
         return 100000;
-    case uNibex:
+    case uZixCash:
         return 100;
     default:
         return 100000000;
@@ -123,11 +123,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case Nibex:
+    case ZixCash:
         return 8;
-    case mNibex:
+    case mZixCash:
         return 5;
-    case uNibex:
+    case uZixCash:
         return 2;
     default:
         return 0;

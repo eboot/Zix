@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/nibex-config.h"
+#include "config/zixcash-config.h"
 #endif
 
 #ifdef WIN32
